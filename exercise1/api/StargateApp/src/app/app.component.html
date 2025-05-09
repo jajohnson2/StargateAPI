@@ -1,8 +1,69 @@
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-  <title></title>
-</head>
-<body>
-  <h1>Test!</h1>
-</body>
-</html>
+<h1>{{ title }}</h1>
+
+<div class="container">
+    <section class="section-card">
+        <h2>All People</h2>
+        <div class="list-container">
+            <ul *ngIf="people.length > 0; else noPeople">
+                <li *ngFor="let person of people">
+                    {{ person.name }} (PersonId: {{ person.personId }})
+                </li>
+            </ul>
+            <ng-template #noPeople>
+                <p>Loading people...</p>
+            </ng-template>
+        </div>
+        <button (click)="getAllPeople()">Get all People</button>
+    </section>
+
+    <section class="section-card">
+        <h2>Search Person & Duties</h2>
+        <div class="input-group">
+            <input type="text" [(ngModel)]="personNameInput" placeholder="Enter person name">
+            <button (click)="getPersonDetails()">Search</button>
+        </div>
+
+        <div *ngIf="personDetails.personId">
+            <h3>Details for: {{ personDetails.name }}</h3>
+            <p>Person Id: {{ personDetails.personId }}</p>
+            <h4>Astronaut Duty:</h4>
+            <div class="list-container">
+                <p *ngIf="astronautDuties.currentDutyTitle; else noDuties">
+                    {{ astronautDuties.currentRank }} - {{ astronautDuties.currentDutyTitle }}
+                    ({{ astronautDuties.careerStartDate | date }} to {{ (astronautDuties.careerEndDate | date) ?? 'Present' }})
+                </p>
+                <ng-template #noDuties>
+                    <p>No duties found for this person.</p>
+                </ng-template>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-card">
+        <h2>Create New Person</h2>
+        <div class="input-group">
+            <input type="text" [(ngModel)]="newPersonName" placeholder="New person name">
+            <button (click)="createPerson()">Create Person</button>
+        </div>
+    </section>
+
+    <section class="section-card">
+        <h2>Create New Astronaut Duty</h2>
+        <div class="input-group">
+            <input type="text" [(ngModel)]="newDutyPersonName" placeholder="Person Name" required>
+        </div>
+        <div class="input-group">
+            <input type="text" [(ngModel)]="newDutyPersonRank" placeholder="Rank" required>
+        </div>
+        <div class="input-group">
+            <input type="text" [(ngModel)]="newDutyTitle" placeholder="Duty Title" required>
+        </div>
+        <div class="input-group">
+            <input type="date" [(ngModel)]="newDutyStartDate" required>
+        </div>
+        <div>
+            <button (click)="createAstronautDuty()">Create Duty</button>
+        </div>
+        <p class="note">Note: Person must exist before creating a duty.</p>
+    </section>
+</div>
