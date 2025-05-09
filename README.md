@@ -60,7 +60,7 @@ This document outlines the steps I took to complete the BAM Technologies coding 
     
 25. **Got 'Create Person' Working:** I also got the API call to create a new person working correctly. There’s currently no input validation which would need to be added in the future. An alert lets the user know that the user was successfully created and refreshes the `getAllPeople` list on the page.
     
-26. **Got ‘Create Astronaut Duty’ Working:** This API call was a tiny bit more complex than the other API calls. In order to create an astronaut duty for an existing person, we first have to GET personByName to pass that to the createAstronautDuty API call. An alert is displayed to let the user know the creation was successful. I considered having this also refresh the getPersonByName display on the UI, but decided that might be overreaching. It would be easy to implement by calling getPersonByName after creating the new astronaut duty. You could even prompt the user to make the decision to fetch the person’s record after creating a new duty.
+26. **Got ‘Create Astronaut Duty’ Working:** Creates a newDutyRequest object, using the user's input, and calls `apiService.createAstronautDuty()`. An alert is displayed to let the user know the creation was successful.
     
 27. **Clean up code:** Before considering the project complete (for the time being--had to stop due to time constraint) and ready for broader testing or merging, I performed code cleanup. This involved:
     * Removing any temporary `console.log` statements used during debugging.
@@ -77,9 +77,10 @@ This document outlines the steps I took to complete the BAM Technologies coding 
 
 30. **What I would do next:** Looking beyond the completion of the core requirements, here are some areas I would focus on:
 
-    * **Automated Testing:** Implement comprehensive unit tests using a framework like NUnit or MSTest. Add unit tests for Angular. 
+    * **PUT Person API:** The instructions listed a requirement to "Add/update a person by name." I would implement the `PUT` method for the `Person` API to allow updating existing person records.
+    * **Automated Testing:** Implement comprehensive unit tests using a framework like NUnit or MSTest. Add unit tests for Angular.
     * **Error Handling & Input Validation:** Enhance error handling in both the back-end (more specific API responses) and front-end (user-friendly error messages instead of just alerts). Implement input validation on the back-end for all API endpoints and add front-end validation in the Angular forms.
-    * **Improve UI:** Refine the Angular UI for a better user expeience and functionality. Improve how data is displayed (e.g., data tables for lists).
+    * **Improve UI:** Refine the Angular UI for a better user expeience and functionality. Improve how data is displayed (e.g., data tables for lists).  Add "Loading..." feature.
     * **Handle Specific Use Cases:** Address edge cases like handling multiple people with the same name in the search functionality (e.g., returning a list to choose from).
     * **Additional API Endpoints:** Implement standard CRUD (Create, Read, Update, Delete) operations for all relevant entities.
     * **Logging:** Implement logging within the application and configure it to save logs to a database.
