@@ -9,22 +9,22 @@
         }
     },
     "profiles": {
-        "http": {
-            "commandName": "Project",
-            "dotnetRunMessages": true,
-            "launchBrowser": true,
-            "launchUrl": "swagger",
-            "applicationUrl": "http://localhost:5204",
-            "environmentVariables": {
-                "ASPNETCORE_ENVIRONMENT": "Development"
-            }
-        },
         "https": {
             "commandName": "Project",
             "dotnetRunMessages": true,
             "launchBrowser": true,
             "launchUrl": "swagger",
             "applicationUrl": "https://localhost:7204;http://localhost:5204",
+            "environmentVariables": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            }
+        },
+        "http": {
+            "commandName": "Project",
+            "dotnetRunMessages": true,
+            "launchBrowser": true,
+            "launchUrl": "swagger",
+            "applicationUrl": "http://localhost:5204",
             "environmentVariables": {
                 "ASPNETCORE_ENVIRONMENT": "Development"
             }
@@ -38,7 +38,7 @@
             // Will be the port that our .NET app listens on
             "applicationUrl": "http://localhost:5204",
             "environmentVariables": {
-                "ASPNETCORE_ENVIRONMENT": "Development"
+                "ASPNETCORE_ENVIRONMENT": "Angular"
             }
         },
         "IIS Express": {

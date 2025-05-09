@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
 using StargateAPI.Business.Commands;
 using StargateAPI.Business.Data;
@@ -8,19 +7,16 @@ var builder = WebApplication.CreateBuilder(args);
 // Add CORS services for API calls
 builder.Services.AddCors(options =>
 {
-    options.AddDefaultPolicy( // Defines a default CORS policy
-        builder =>
+    options.AddPolicy("AllowAngular",
+        policy =>
         {
-            // Allow requests from your Angular app's development server origin(s)
-            builder.WithOrigins("http://localhost:4200", "https://localhost:4200")
-                   .AllowAnyHeader() // Allow any headers in the request
-                   .AllowAnyMethod(); // Allow HTTP methods like GET, POST, PUT, DELETE
+            policy.WithOrigins("http://localhost:4200", "https://localhost:4200") // <-- Add the https origin here
+                    .AllowAnyMethod()
+                    .AllowAnyHeader();
         });
 });
 
-// Add services to the container.
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<StargateContext>(options => 
@@ -34,32 +30,17 @@ builder.Services.AddMediatR(cfg =>
 
 var app = builder.Build();
 
+app.UseCors("AllowAngular");
+
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
-app.UseCors();
-
 app.MapControllers();
 
-// For Angular development/testing
+// For Swagger UI API endpoint development/testing
 if (app.Environment.IsDevelopment())
 {
-    app.UseSpa(spa =>
-    {
-        // Path to the Angular app
-        spa.Options.SourcePath = "../StargateApp";
-
-        if (app.Environment.IsDevelopment())
-        {
-            // Use Angular CLI server in development
-            spa.UseAngularCliServer(npmScript: "start");
-        }
-    });
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
-
-//// For Swagger UI API endpoint development/testing
-//app.UseSwagger();
-//app.UseSwaggerUI();
 
 app.Run();
