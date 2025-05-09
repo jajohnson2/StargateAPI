@@ -84,19 +84,14 @@ This document outlines the steps I took to complete the BAM Technologies coding 
     * **Additional API Endpoints:** Implement standard CRUD (Create, Read, Update, Delete) operations for all relevant entities.
     * **Logging:** Implement logging within the application and configure it to save logs to a database.
     * **Authentication and Authorization:** Implement security measures to ensure only authorized users can access certain APIs or perform specific actions.
-    * **Configuration Settings:** Create configuration settings like connection strings, API URLs, etc.
-
-    &nbsp;
-    
-    &nbsp;
-    
+    * **Configuration Settings:** Create configuration settings like connection strings, API URLs, etc.   
 
 ### **Challenges Encountered:**
 
 1.  The order of the columns in the `AstronautDetail` table looked wrong in DB Browser for SQLite.
     
     - <ins>Solution</ins>: This was a strange visual thing. The code that first created the table sets the order as *Id, PersonId, CurrentRank, CurrentDutyTitle, CareerStartDate, CareerEndDate*. But in DB Browser for SQLite, it showed as *Id, CareerEndDate, CareerStartDate, CurrentDutyTitle, CurrentRank, PersonId*. Since this was just how it looked and didn't actually change the data, I decided to come back to it later if I had time after fixing more important things.
-2.  I had issues when trying to run the application with the debugger in VS 2022. The errors said: "\*AggregateException: One or more errors occurred. (The npm script 'start' exited without indicating that the Angular CLI was listening for requests. The error output was: Node.js version v14.17.0 detected.  
+2.  I had issues when trying to run the application with the debugger in VS 2022. The errors said: "AggregateException: One or more errors occurred. (The npm script 'start' exited without indicating that the Angular CLI was listening for requests. The error output was: Node.js version v14.17.0 detected.  
      -  <ins>Solution:</ins> I checked my computer's environment variables and noticed that there were two places where Node.js was listed. I made sure the system only used the newer version.
 	
 3.  When I was connecting the Angular part to the existing ASP.NET project, I got an error when trying to run Angular with the debugger: "*Failed to bind to address http://\[::1\]:4200: address already in use.*"
