@@ -4,10 +4,13 @@ import { ApiService } from './services/api.service';
 import { Person } from './models/person';
 import { AstronautDuty } from './models/astronaut-duty';
 import { CreateAstronautDutyRequest } from './models/create-astronaut-duty';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  standalone: true,
+  imports: [CommonModule, FormsModule, RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
