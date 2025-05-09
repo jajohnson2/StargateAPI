@@ -49,6 +49,7 @@
 
     <section class="section-card">
         <h2>Create New Astronaut Duty</h2>
+        <p class="note">Note: Person must exist before creating a duty.</p>
         <div class="input-group">
             <input type="text" [(ngModel)]="newDutyPersonName" placeholder="Person Name" required>
         </div>
@@ -59,11 +60,11 @@
             <input type="text" [(ngModel)]="newDutyTitle" placeholder="Duty Title" required>
         </div>
         <div class="input-group">
-            <input type="date" [(ngModel)]="newDutyStartDate" required>
+            <label for="newDutyStartDate">Career Start Date: </label>
+            <input id="newDutyStartDate" type="date" [(ngModel)]="newDutyStartDate" required>
         </div>
         <div>
             <button (click)="createAstronautDuty()">Create Duty</button>
         </div>
-        <p class="note">Note: Person must exist before creating a duty.</p>
     </section>
 </div>

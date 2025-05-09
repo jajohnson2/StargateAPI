@@ -11,6 +11,7 @@ export class ApiService {
   private apiUrl = 'https://localhost:7204';
 
   constructor(private http: HttpClient) { }
+
   getPeople(): Observable<any> {
     return this.http.get(`${this.apiUrl}/Person`);
   }
